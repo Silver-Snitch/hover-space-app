@@ -3,7 +3,7 @@
     "userPool": "ap-south-1_MgflQpQfP",
     "userPoolBaseUri": "https://hover-space.auth.ap-south-1.amazoncognito.com",
     "clientId": "32pls1rrpog1rbkj7kkeumbk0q",
-    "callbackUri": "https://google.com"
+    "callbackUri": "https://master.d2x1naso2iltpx.amplifyapp.com/callback"
 }
 
 
