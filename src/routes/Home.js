@@ -9,6 +9,7 @@ const mapStateToProps = state => {
 }
 class Home extends Component {
   constructor (props) {
+    console.log("fdfdf")
     super(props)
     this.state = { apiStatus: 'Not called' }
   }
@@ -19,7 +20,6 @@ class Home extends Component {
 
   render () {
     return (
-      console.log("dsfsd")
       <div className="Home">
         <header className="Home-header">
           <img src={logo} className="Home-logo" alt="logo" />
