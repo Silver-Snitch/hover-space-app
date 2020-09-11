@@ -7,6 +7,7 @@ function mapStateToProps (state) {
   return { session: state.session }
 }
 function mapDispatchToProps (dispatch) {
+  console.log("dsfsdfsdf")
   return {
     initSessionFromCallbackURI: href => dispatch(initSessionFromCallbackURI(href))
   }
