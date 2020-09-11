@@ -19,6 +19,7 @@ class Home extends Component {
 
   render () {
     return (
+      console.log("dsfsd")
       <div className="Home">
         <header className="Home-header">
           <img src={logo} className="Home-logo" alt="logo" />

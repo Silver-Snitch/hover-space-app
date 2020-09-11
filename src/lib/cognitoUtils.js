@@ -39,6 +39,7 @@ const getCognitoSignInUri = () => {
 
 // Parse the response from a Cognito callback URI (assumed a token or code is in the supplied href). Returns a promise.
 const parseCognitoWebResponse = (href) => {
+  console.log(href)
   return new Promise((resolve, reject) => {
     const auth = createCognitoAuth()
 
