@@ -10,11 +10,11 @@ const mapStateToProps = state => {
 class Home extends Component {
   constructor (props) {
     super(props)
+    console.log("session: "+this.props.session.isLoggedIn)
     this.state = { apiStatus: 'Not called' }
   }
   onSignOut = (e) => {
     e.preventDefault()
-    console.log(this.props.session.isLoggedIn)
     cognitoUtils.signOutCognitoSession()
   }
 
