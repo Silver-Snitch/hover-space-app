@@ -1,24 +1,38 @@
 import React, { useState } from 'react';
-import { CognitoUserPool } from 'amazon-cognito-identity-js'
+import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
+import UserPool from './UserPool'
 
 export default() => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const poolData = {
-        UserPoolId: 'ap-south-1_MgflQpQfP',
-        ClientId: '32pls1rrpog1rbkj7kkeumbk0q'
-    };
-
-    const userPool = new CognitoUserPool(poolData);
-
     const onSubmit = event => {
         event.preventDefault();
-        userPool.signUp(email, password, [], null, (err, data) => {
-            if(err) console.log(err);
-            else console.log(data);
-        })
+
+        const user = new CognitoUser({
+            Username: email,
+            Pool: UserPool
+        });
+
+        const authDetails = new AuthenticationDetails({
+            Username: email,
+            Password: password
+        });
+
+        user.authenticateUser(authDetails, {
+            onSuccess: data => {
+                console.log(data);
+            },
+
+            onFailure: err => {
+                console.log(err);
+            },
+
+            newPasswordRequired: data => {
+                console.log(data);
+            }
+        });
     };
 
     return (
