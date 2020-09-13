@@ -21,26 +21,29 @@ class Home extends Component {
   render () {
     return (
       <div className="Home">
+        <div>Hello</div>
         <header className="Home-header">
           <img src={logo} className="Home-logo" alt="logo" />
 
-          { this.props.session.isLoggedIn ? (
-            <div>
-              <p>You are logged in as user {this.props.session.user.userName} ({this.props.session.user.email}).</p>
-              <p></p>
+          { 
+            this.props.session.isLoggedIn ? (
               <div>
-                <div>API status: {this.state.apiStatus}</div>
-                <div className="Home-api-response">{this.state.apiResponse}</div>
+                <p>You are logged in as user {this.props.session.user.userName} ({this.props.session.user.email}).</p>
+                <p></p>
+                <div>
+                  <div>API status: {this.state.apiStatus}</div>
+                  <div className="Home-api-response">{this.state.apiResponse}</div>
+                </div>
+                <p></p>
+                <a className="Home-link" href="youtube.com" onClick={this.onSignOut}>Sign out</a>
               </div>
-              <p></p>
-              <a className="Home-link" href="youtube.com" onClick={this.onSignOut}>Sign out</a>
-            </div>
-          ) : (
-            <div>
-              <p>You are not logged in.</p>
-              <a className="Home-link" href={cognitoUtils.getCognitoSignInUri()}>Sign in</a>
-            </div>
-          )}
+            ) : (
+              <div>
+                <p>You are not logged in.</p>
+                <a className="Home-link" href={cognitoUtils.getCognitoSignInUri()}>Sign in</a>
+              </div>
+            )
+          }
           <div className="Home-details">
           </div>
         </header>
