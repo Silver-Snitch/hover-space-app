@@ -33,7 +33,7 @@ class Home extends Component {
                 <div className="Home-api-response">{this.state.apiResponse}</div>
               </div>
               <p></p>
-              <a className="Home-link" href="#" onClick={this.onSignOut}>Sign out</a>
+              <a className="Home-link" href="youtube.com" onClick={this.onSignOut}>Sign out</a>
             </div>
           ) : (
             <div>
