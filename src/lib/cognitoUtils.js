@@ -79,6 +79,7 @@ const getCognitoSession = () => {
           email: result.idToken.payload.email
         }
       }
+      console.log(session)
       resolve(session)
     })
   })
