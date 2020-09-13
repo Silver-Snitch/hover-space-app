@@ -7,7 +7,6 @@ export const clearSession = () => ({
 
 // Initialise the Cognito sesson from a callback href
 export function initSessionFromCallbackURI (callbackHref) {
-  console.log("asfa"+callbackHref)
   return function (dispatch) {
     return cognitoUtils.parseCognitoWebResponse(callbackHref) // parse the callback URL
       .then(() => cognitoUtils.getCognitoSession()) // get a new session

@@ -9,12 +9,12 @@ const mapStateToProps = state => {
 }
 class Home extends Component {
   constructor (props) {
-    console.log("fdfdf")
     super(props)
     this.state = { apiStatus: 'Not called' }
   }
   onSignOut = (e) => {
     e.preventDefault()
+    console.log(this.props.session.isLoggedIn)
     cognitoUtils.signOutCognitoSession()
   }
 
@@ -23,6 +23,7 @@ class Home extends Component {
       <div className="Home">
         <header className="Home-header">
           <img src={logo} className="Home-logo" alt="logo" />
+
           { this.props.session.isLoggedIn ? (
             <div>
               <p>You are logged in as user {this.props.session.user.userName} ({this.props.session.user.email}).</p>

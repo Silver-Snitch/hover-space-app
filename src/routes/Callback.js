@@ -7,7 +7,6 @@ function mapStateToProps (state) {
   return { session: state.session }
 }
 function mapDispatchToProps (dispatch) {
-  console.log("dsfsdfsdf")
   return {
     initSessionFromCallbackURI: href => dispatch(initSessionFromCallbackURI(href))
   }
@@ -27,6 +26,7 @@ class Callback extends Component {
 
   render () {
     // If there's no auth code in the URL or we're now logged into, redirect to the root page
+    
     if ((!this.props.location.hash && !this.props.location.search) || this.props.session.isLoggedIn) {
       return <Redirect to="/" />
     }
