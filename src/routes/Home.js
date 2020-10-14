@@ -1,51 +1,70 @@
-import React, { Component } from 'react'
-import logo from './logo.svg'
+import React, { useState, Component } from 'react'
 import './Home.css'
 import { connect } from 'react-redux'
-import cognitoUtils from '../lib/cognitoUtils'
+import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
+import UserPool from './UserPool'
 
 const mapStateToProps = state => {
   return { session: state.session }
 }
+
+const onSubmit = event => {
+  event.preventDefault();
+
+  const user = new CognitoUser({
+    Username: email,
+    Pool: UserPool
+  })
+
+  const authDetails = new AuthenticationDetails({
+    Username: email,
+    Password: password
+  })
+
+  user.authenticateUser(authDetails, {
+    onSuccess: data => {
+      console.log(data)
+    },
+
+    onFailure: err => {
+      console.log(err)
+    }, 
+
+    newPasswordRequired: data=> {
+      console.log('newPasswordRequired: ', data)
+    }
+
+  })
+
+
+}
+
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+
+
 class Home extends Component {
   constructor (props) {
     super(props)
     console.log("session: "+this.props.session.isLoggedIn)
     this.state = { apiStatus: 'Not called' }
   }
-  onSignOut = (e) => {
-    e.preventDefault()
-    cognitoUtils.signOutCognitoSession()
-  }
-
   render () {
     return (
       <div className="Home">
         <div>Hello</div>
         <header className="Home-header">
-          <img src={logo} className="Home-logo" alt="logo" />
-
-          { 
-            this.props.session.isLoggedIn ? (
-              <div>
-                <p>You are logged in as user {this.props.session.user.userName} ({this.props.session.user.email}).</p>
-                <p></p>
-                <div>
-                  <div>API status: {this.state.apiStatus}</div>
-                  <div className="Home-api-response">{this.state.apiResponse}</div>
-                </div>
-                <p></p>
-                <a className="Home-link" href="youtube.com" onClick={this.onSignOut}>Sign out</a>
-              </div>
-            ) : (
-              <div>
-                <p>You are not logged in.</p>
-                <a className="Home-link" href={cognitoUtils.getCognitoSignInUri()}>Sign in</a>
-              </div>
-            )
-          }
-          <div className="Home-details">
-          </div>
+          <from onSubmit={onSubmit}>
+            <input 
+              value={email}
+              onChange={event => setEmail(event.target.value)}
+            />
+            <input 
+              value={password}
+              onChange={event => setPassword(event.target.value)}
+            />
+            <button type='submit'> Login </button>
+          </from>
         </header>
       </div>
     )
