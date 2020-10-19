@@ -25,10 +25,13 @@ const Account = props => {
     await new Promise((resolve, reject) => {
       const user = new CognitoUser({ Username, Pool });
       const authDetails = new AuthenticationDetails({ Username, Password });
+      console.log("local storage : ", sessionStorage.getItem('userData'))
 
       user.authenticateUser(authDetails, {
         onSuccess: data => {
           console.log('onSuccess:', data);
+
+          sessionStorage.setItem('userData', data.accessToken.jwtToken);
           resolve(data);
         },
 
