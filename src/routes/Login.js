@@ -10,6 +10,8 @@ export default() => {
     const onSubmit = event => {
         event.preventDefault();
 
+        console.log(sessionStorage.getItem('userData'));
+
         const user = new CognitoUser({
             Username: email,
             Pool: UserPool
@@ -22,7 +24,8 @@ export default() => {
 
         user.authenticateUser(authDetails, {
             onSuccess: data => {
-                console.log(data);
+                console.log(data.accessToken.jwtToken);
+                sessionStorage.setItem('userData', data.accessToken.jwtToken);
             },
 
             onFailure: err => {
@@ -42,6 +45,7 @@ export default() => {
                 onChange={event => setEmail(event.target.value)}
             />      
             <input
+                type="password"
                 value={password}
                 onChange={event => setPassword(event.target.value)}
             />

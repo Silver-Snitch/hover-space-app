@@ -5,10 +5,10 @@ const initialState = {
 }
 
 const session = (state = initialState, action) => {
-  console.log("Session details")
-  console.log(action)
-  console.log(action.session)
-  console.log(state)
+  // console.log("Session details")
+  // console.log(action)
+  // console.log(action.session)
+  // console.log(state)
   switch (action.type) {
     case SET_SESSION:
       return Object.assign({},
