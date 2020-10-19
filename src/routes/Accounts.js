@@ -1,3 +1,4 @@
+    /*global chrome*/
 import React, { createContext } from 'react';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import Pool from './UserPool';
@@ -30,7 +31,12 @@ const Account = props => {
       user.authenticateUser(authDetails, {
         onSuccess: data => {
           console.log('onSuccess:', data);
-
+          var editorExtensionId = "jecfcadimgfnpmcfghicenmpfonmjach"; 
+          chrome.runtime.sendMessage(editorExtensionId, {message: data.accessToken.jwtToken}, function(response) {
+            console.log("dsfsd"+response);
+            if (!response.success)
+              console.log("Failed");
+          });
           sessionStorage.setItem('userData', data.accessToken.jwtToken);
           resolve(data);
         },
