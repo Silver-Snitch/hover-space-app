@@ -31,13 +31,17 @@ const Account = props => {
       user.authenticateUser(authDetails, {
         onSuccess: data => {
           console.log('onSuccess:', data);
+
+
           var editorExtensionId = "jecfcadimgfnpmcfghicenmpfonmjach"; 
-          chrome.runtime.sendMessage(editorExtensionId, {message: data.accessToken.jwtToken}, function(response) {
+          chrome.runtime.sendMessage(editorExtensionId, {message: data.idToken.jwtToken}, function(response) {
             console.log("dsfsd"+response);
             if (!response.success)
               console.log("Failed");
           });
-          sessionStorage.setItem('userData', data.accessToken.jwtToken);
+
+          
+          sessionStorage.setItem('userData', data.idToken.jwtToken);
           resolve(data);
         },
 
