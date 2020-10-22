@@ -60,6 +60,14 @@ const Account = props => {
   const logout = () => {
     const user = Pool.getCurrentUser();
     if (user) {
+      var editorExtensionId = "jecfcadimgfnpmcfghicenmpfonmjach"; 
+      chrome.runtime.sendMessage(editorExtensionId, {message: data.idToken.jwtToken}, function(response) {
+        console.log("dsfsd"+response);
+        if (!response.success)
+          console.log("Failed");
+      });
+
+
       user.signOut();
     }
   }
