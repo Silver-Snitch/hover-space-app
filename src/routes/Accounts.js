@@ -61,7 +61,7 @@ const Account = props => {
     const user = Pool.getCurrentUser();
     if (user) {
       var editorExtensionId = "jecfcadimgfnpmcfghicenmpfonmjach"; 
-      chrome.runtime.sendMessage(editorExtensionId, {message: data.idToken.jwtToken}, function(response) {
+      chrome.runtime.sendMessage(editorExtensionId, {}, function(response) {
         console.log("dsfsd"+response);
         if (!response.success)
           console.log("Failed");
