@@ -6,6 +6,7 @@ export default () => {
 
   const { getSession, logout } = useContext(AccountContext);
 
+
   useEffect(() => {
     getSession()
       .then(session => {
