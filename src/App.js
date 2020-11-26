@@ -15,7 +15,7 @@ const history = createBrowserHistory()
 
 const App = () => (
   <Account>
-    <Status />
+    {/* <Status /> */}
     <Router history={history}>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/" component={Login}/>

@@ -62,13 +62,13 @@ const Account = props => {
     if (user) {
       var editorExtensionId = "jecfcadimgfnpmcfghicenmpfonmjach"; 
       chrome.runtime.sendMessage(editorExtensionId, {}, function(response) {
-        console.log("dsfsd"+response);
         if (!response.success)
           console.log("Failed");
       });
 
 
       user.signOut();
+      window.location.reload();
     }
   }
 
